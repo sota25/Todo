@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.example.demo.repository.TodoMapper">
+	<resultMap
+		type="com.example.demo.entity.Todo"
+		id="todo">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="time_limit" property="timeLimit" />
+		<result column="is_done" property="isDone" />
+	</resultMap>
+
+	<insert id="insertOne"
+		parameterType="com.example.demo.repository.TodoMapper">
+		INSERT INTO
+		todo_details(title,time_limit,is_done)
+		VALUES(#{title},#{timeLimit},#{isDone})
+	</insert> 
+
+	<select id="findOne" parameterType="int" resultMap="todo"> 
+		SELECT * FROM todo_details
+		WHERE id=#{id}
+	</select> 
+	
+	<select id="findAll" resultMap="todo">
+		SELECT * FROM todo_details
+	</select>
+	
+	<select id="findIsDone" resultMap="todo">
+		SELECT * FROM todo_details WHERE is_done=true ORDER BY time_limit DESC
+	</select>
+	
+	<select id="findNotDone" resultMap="todo">
+		SELECT * FROM todo_details  WHERE is_done=false ORDER BY time_limit DESC
+	</select>
+	
+	<!-- <update id="updateOne"
+		parameterType="com.example.demo.UserDetailsImpl"> UPDATE m_user SET email=#{email},password=#{password}
+		WHERE user_id=#{userId}
+	</update>
+	<update id="updateNewUser"
+		parameterType="com.example.demo.user.domain.model.UserEntity">
+		UPDATE m_user SET
+		user_id=#{userId},user_name=#{userName},email=#{email},password=#{password},role=#{role},user_status=#{userStatus},requested_at=#{requestedAt}
+		WHERE user_id=#{userId}
+	</update>
+	<delete id="deleteOne" parameterType="string">
+		DELETE FROM m_user WHERE user_id=#{userId}
+	</delete>  -->
+</mapper>
