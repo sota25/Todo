@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+
+    <link th:href="@{/css/home.css}" rel="stylesheet"></link>
+    <title>ログイン</title>
+</head>
+<body class="bg-light">
+    <div class="text-center">
+        <h2>TodoList</h2>
+        <a th:href="@{'/add'}">TODO追加</a>
+        
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-light">
+                <p>未完了リスト</p>
+                <tr>
+                    <th class="info col-sm-2">id</th>
+                    <th class="info col-sm-2">タイトル</th>
+                    <th class="info col-sm-2">期日</th>
+                </tr>
+                <tr th:each="notDoneTodo:${notDoneTodo}">
+                    <td th:text="${notDoneTodo.id}"></td>
+                    <td th:text="${notDoneTodo.title}"></td>
+                    <td th:text="${#dates.format(notDoneTodo.timeLimit,'YYYY-MM-dd')}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/details'+${notDoneTodo.id}}">詳細</a>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-light">
+                <p>完了リスト</p>
+                <tr>
+                    <th class="info col-sm-2">id</th>
+                    <th class="info col-sm-2">タイトル</th>
+                    <th class="info col-sm-2">期日</th>
+                </tr>
+                <tr th:each="isDoneTodo:${isDoneTodo}">
+                    <td th:text="${isDoneTodo.id}"></td>
+                    <td th:text="${isDoneTodo.title}"></td>
+                    <td th:text="${#dates.format(isDoneTodo.timeLimit,'YYYY-MM-dd')}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/details/'+${isDoneTodo.id}}">詳細</a>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        
+    </div>
+    
+</body>
+</html>
