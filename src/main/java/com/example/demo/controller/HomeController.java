@@ -21,20 +21,18 @@ public class HomeController {
 	public String getHome(Model model) {
 		List<Todo> notDoneTodo = todoMapper.findNotDone();
 		List<Todo> isDoneTodo = todoMapper.findIsDone();
-		
-		System.out.println(notDoneTodo);
-		System.out.println(isDoneTodo);
 
-		
-		model.addAttribute("notDoneTodo",notDoneTodo);
+		model.addAttribute("notDoneTodo", notDoneTodo);
 
-		model.addAttribute("isDoneTodo",isDoneTodo);
+		model.addAttribute("isDoneTodo", isDoneTodo);
 
 		return "home";
 	}
 
 	@PostMapping("/")
 	public String postDeleteTodo(Model model) {
+
+		todoMapper.deleteOne();
 
 		return "redirect:/";
 	}
