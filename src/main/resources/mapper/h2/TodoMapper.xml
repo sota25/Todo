@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<insert id="insertOne"
-		parameterType="com.example.demo.repository.TodoMapper">
+		parameterType="com.example.demo.entity.Todo">
 		INSERT INTO
 		todo_details(title,time_limit,is_done)
 		VALUES(#{title},#{timeLimit},#{isDone})
@@ -36,17 +36,12 @@
 		SELECT * FROM todo_details  WHERE is_done=false ORDER BY time_limit DESC
 	</select>
 	
-	<!-- <update id="updateOne"
-		parameterType="com.example.demo.UserDetailsImpl"> UPDATE m_user SET email=#{email},password=#{password}
-		WHERE user_id=#{userId}
+	<update id="updateOne" parameterType="com.example.demo.entity.Todo">
+		 UPDATE todo_details SET title=#{title},time_limit=#{timeLimit},is_done=#{isDone}
+		WHERE id=#{id}
 	</update>
-	<update id="updateNewUser"
-		parameterType="com.example.demo.user.domain.model.UserEntity">
-		UPDATE m_user SET
-		user_id=#{userId},user_name=#{userName},email=#{email},password=#{password},role=#{role},user_status=#{userStatus},requested_at=#{requestedAt}
-		WHERE user_id=#{userId}
-	</update>
-	<delete id="deleteOne" parameterType="string">
-		DELETE FROM m_user WHERE user_id=#{userId}
-	</delete>  -->
+	
+	<delete id="deleteOne" >
+		DELETE FROM todo_details WHERE is_done=true
+	</delete> 
 </mapper>

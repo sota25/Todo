@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
@@ -8,11 +8,11 @@
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 
     <link th:href="@{/css/add.css}" rel="stylesheet"></link>
-    <title th:text="#{user.signup.title}"></title>
+    <title>detail</title>
 </head>
 <body class="bg-light">
-    <form method="post" th:action="@{/add}" th:object="${todoForm}" class="form-signup">
-        <h1 class="text-center">TodoAddForm</h1>
+    <form method="post" th:action="@{/{id}(id=${id})}" th:object="${todoForm}" class="form-signup">
+        <h1 class="text-center">TodoDetail</h1>
         <div class="form-group">
             <label for="title" >タイトル</label>
             <input type="text" class="form-control" th:field="*{title}" th:errorclass="is-invalid" />
@@ -33,3 +33,4 @@
     </form>
 </body>
 </html>
+
